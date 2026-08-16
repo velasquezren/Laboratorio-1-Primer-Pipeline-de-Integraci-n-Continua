@@ -35,11 +35,11 @@ jobs:
       - name: Mostrar versión de Git
         run: git --version
 
-      - name: Simulacion de prueba o validacion
+      - name: Simulacion de verificacion y build
         run: |
-          echo "Ejecutando validacion de compilacion/pruebas..."
-          echo "ERROR: Fallo simulado para validar la regla de proteccion de rama y bloqueo de PR."
-          exit 1
+          echo "Ejecutando verificacion de build y consistencia..."
+          test -f README.md && test -f app/hello.txt
+          echo "Validacion de archivos requeridos: EXITOSA (OK)"
 
       - name: Finalizar pipeline
         run: echo "Pipeline ejecutado correctamente."
