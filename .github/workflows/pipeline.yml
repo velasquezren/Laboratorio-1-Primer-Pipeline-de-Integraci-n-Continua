@@ -1,7 +1,11 @@
-name: Primer Pipeline CI
+name: Pipeline CI
 
 on:
   push:
+    branches:
+      - main
+      - 'feature/**'
+  pull_request:
     branches:
       - main
 
@@ -17,11 +21,12 @@ jobs:
       - name: Mostrar información del entorno
         run: |
           echo "================================"
-          echo "      PRIMER PIPELINE CI"
+          echo "         PIPELINE CI"
           echo "================================"
           echo "Repositorio: ${{ github.repository }}"
-          echo "Rama: ${{ github.ref_name }}"
-          echo "Commit: ${{ github.sha }}"
+          echo "Evento:      ${{ github.event_name }}"
+          echo "Rama/Ref:    ${{ github.ref_name }}"
+          echo "Commit SHA:  ${{ github.sha }}"
           echo "================================"
 
       - name: Mostrar fecha y hora
