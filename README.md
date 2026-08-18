@@ -1,26 +1,33 @@
-# Laboratorio 1: Primer Pipeline de Integración Continua
+# Proyecto CI/CD - Laboratorios de Integración y Entrega Continua
 
-Este repositorio contiene la configuración del primer pipeline de CI/CD utilizando **GitHub Actions**, correspondiente al Laboratorio 1 de *Entornos de Integración y Entrega Continua*.
+Repositorio central para el desarrollo y automatización de pipelines de Integración Continua y Entrega Continua (CI/CD) utilizando **GitHub Actions**.
 
-## 📁 Estructura del Repositorio
+## 🚀 Estrategia de Branching y Flujo de Trabajo
+
+Este proyecto implementa una estrategia de branching basada en **ramas de funcionalidad (Feature Branching)** y control de cambios mediante **Pull Requests** protegidos:
+
+1. `main`: Rama protegida que contiene la versión estable y validada.
+2. `feature/*`: Ramas independientes creadas para cada funcionalidad o modificación.
+3. **Pull Requests (PR)**: Mecanismo obligatorio para integrar cambios a `main`. Requiere validación exitosa de CI antes de permitir el merge.
+
+```text
+Developer ──► Feature Branch ──► Commit & Push ──► CI Pipeline (Automático) ──► Pull Request ──► Code Review ──► Merge ──► main
+```
+
+## 📁 Estructura del Proyecto
 
 ```text
 .
 ├── .github/
 │   └── workflows/
-│       └── pipeline.yml    # Definición del pipeline en GitHub Actions
+│       └── pipeline.yml       # Flujo de trabajo automatizado de CI
 ├── app/
-│   └── hello.txt           # Archivo de texto requerido por la práctica
-├── README.md               # Documentación del proyecto
-└── laboratorio1.md         # Guía e instrucciones del laboratorio
+│   └── hello.txt              # Archivo de la aplicación base
+└── README.md                  # Documentación del proyecto
 ```
 
-## 🔄 Funcionamiento del Pipeline
+## ⚙️ Pipeline CI as Code
 
-El pipeline está configurado como *Pipeline as Code* y se dispara automáticamente tras cada evento de `push` a la rama `main`. Ejecuta las siguientes tareas:
-
-1. **Checkout**: Clona y descarga el código fuente del repositorio en el runner utilizando `actions/checkout@v4`.
-2. **Información del entorno**: Imprime el nombre del repositorio, la rama activa y el identificador SHA del commit.
-3. **Fecha y hora**: Registra el timestamp exacto de la ejecución con `date`.
-4. **Versión de Git**: Valida y muestra la versión de Git instalada en el entorno (`git --version`).
-5. **Finalización**: Emite un mensaje de estado confirmando que el pipeline finalizó con éxito.
+El pipeline se ejecuta automáticamente ante eventos de:
+- `push` en la rama `main` y en cualquier rama `feature/*`.
+- `pull_request` con destino a la rama `main`.
