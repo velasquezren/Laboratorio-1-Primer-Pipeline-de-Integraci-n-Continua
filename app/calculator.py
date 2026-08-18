@@ -3,8 +3,8 @@ Módulo de operaciones de la aplicación para Laboratorio 3 CI/CD.
 """
 
 def add(a: float, b: float) -> float:
-    """Retorna la suma de dos números."""
-    return a + b
+    """Retorna la suma de dos números (MODIFICADO DELIBERADAMENTE PARA PROVOCAR FALLO)."""
+    return a + b + 999
 
 def subtract(a: float, b: float) -> float:
     """Retorna la resta de dos números."""
